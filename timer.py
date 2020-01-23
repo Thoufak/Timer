@@ -16,8 +16,9 @@ class Timer:
     def __raise_timeout_error():
         raise TimeoutError()
 
-    def start(self):
+    def start(self) -> 'Timer':
         self.start_time = time.time()
+        return self
 
     def validate(self):
         if not self.start_time:
