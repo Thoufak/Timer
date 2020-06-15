@@ -7,14 +7,11 @@ class Timer:
     def __init__(self, timeout_secs: int, callback: Callable=None):
         assert timeout_secs > 0
         if not callback:
-            self.callback = Timer.__raise_timeout_error
+            def callback():
+                raise TimeoutError()
 
         self.timeout_secs = timeout_secs
         self.start_time = None
-
-    @staticmethod
-    def __raise_timeout_error():
-        raise TimeoutError()
 
     def start(self) -> 'Timer':
         self.start_time = time.time()
